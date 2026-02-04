@@ -51,16 +51,9 @@
         <td th:text="${student.email}">Email</td>
         <td th:text="${student.department?.name}">Dept</td>
         <td>
-            <a sec:authorize="hasRole('TEACHER')"
-               th:href="@{/students/edit/{id}(id=${student.id})}"
-               class="btn btn-primary btn-sm">
-                Edit
-            </a>
-
-            <a sec:authorize="hasRole('STUDENT')"
-               th:if="${student.user != null and #authentication.name == student.user.username}"
-               th:href="@{/students/edit/{id}(id=${student.id})}"
-               class="btn btn-primary btn-sm">
+            <a th:href="@{/students/edit/{id}(id=${student.id})}"
+               class="btn btn-primary"
+               th:if="${student.user != null and student.user.username == #authentication.name}">
                 Edit
             </a>
 
